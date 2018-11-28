@@ -2,6 +2,7 @@
 namespace bz4work;
 
 
+use Yii;
 use yii\base\Component;
 use yii\base\Exception;
 
@@ -10,7 +11,7 @@ use bz4work\interfaces\IConfigManagerInterface;
 
 class ConfigManager extends Component implements IConfigManagerInterface
 {
-
+    private $cache;
     private static $instance;
 
     public static function getInstance()
@@ -24,6 +25,13 @@ class ConfigManager extends Component implements IConfigManagerInterface
     private function __construct(array $config = [])
     {
         parent::__construct($config);
+
+        if(Yii::$app->redis){
+            $this->cache = Yii::$app->redis;
+        }else{
+            $this->cache = Yii::$app->cache;
+        }
+        return $this;
     }
 
     //get all params
@@ -40,6 +48,28 @@ class ConfigManager extends Component implements IConfigManagerInterface
 
     //get param from DB
     public function get($name)
+    {
+        $param = $this->cache->get($name);
+
+        if(empty($param)){
+            //get value from DB
+            $param = $this->retrieveFromDb($name);
+
+            if(!empty($param)){
+                //set value in cache
+                $this->cache->set($param->param_name, $param->param_value);
+                $param = $param->param_value;
+            }
+        }
+
+        $object = new \stdClass();
+        $object->name = $name;
+        $object->val = $param;
+
+        return $object;
+    }
+
+    private function retrieveFromDb($name)
     {
         $param = Config::findOne(['param_name' => $this->cStr($name)]);
 
@@ -86,7 +116,6 @@ class ConfigManager extends Component implements IConfigManagerInterface
         return trim((string)$string);
     }
 
-
     //transform value
     public function transformToType($value, $type)
     {
@@ -98,7 +127,5 @@ class ConfigManager extends Component implements IConfigManagerInterface
                 throw new Exception('Unknown param type.');
         }
     }
-
-
 
 }
