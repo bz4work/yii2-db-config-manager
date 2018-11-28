@@ -31,8 +31,13 @@ Add to your root composer.json, in the 'repositories' section:
     
 Configure the module in config.php
 
-    'config-manager' => [
-        'class' => 'bz4work\Module'
+    'modules' => [
+    
+        //...other modules
+        
+        'config-manager' => [
+            'class' => 'bz4work\Module'
+        ],
     ],
 
 Add index route to config.php:
