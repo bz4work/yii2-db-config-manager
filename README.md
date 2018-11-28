@@ -26,7 +26,7 @@ to the require section of your `composer.json` file.
 
     {
         "type": "git",
-        "url": "https://bz4work@bitbucket.org/bz4work/yii2-wk-config-manager.git"
+        "url": "https://github.com/bz4work/yii2-db-config-manager.git"
     }
     
     
