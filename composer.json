@@ -1,0 +1,21 @@
+{
+    "name": "bz4work/yii2-db-config-manager",
+    "description": "Yii2 DB Config Manager.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "bz4work",
+            "email": "bz4work@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "bz4work\\": ""
+        }
+    }
+}
