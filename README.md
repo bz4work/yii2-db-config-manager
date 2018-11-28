@@ -2,6 +2,10 @@ Yii2 DB Config Manager
 ======================
 Yii2 DB Config Manager.
 
+###Requirements:
+1. yiisoft/yii2-redis
+2. php 7.2.0
+
 Installation
 ------------
 
@@ -51,6 +55,20 @@ Add index route to config.php:
 Run migrations:
     
     yii migrate --migrationPath=@bz4work/migrations
+
+Configure your Redis Cache server:
+
+    //....
+    'components' => [
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+            'password' => 'foobared'
+        ],
+    ]
+
 
 Usage:
 -----
