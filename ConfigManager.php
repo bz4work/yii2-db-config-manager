@@ -5,22 +5,31 @@ namespace bz4work;
 use yii\base\Component;
 use yii\base\Exception;
 
-use bz4work\Models\Config;
-use bz4work\Interfaces\IConfigManagerInterface;
+use bz4work\models\Config;
+use bz4work\interfaces\IConfigManagerInterface;
 
 class ConfigManager extends Component implements IConfigManagerInterface
 {
-    //замутить Dependency Injection
-    protected $model;
 
-    //get all
-    public function getParams($only_enabled = true, $as_array = true)
+    private static $instance;
+
+    public static function getInstance()
+    {
+        if(is_null(static::$instance)){
+            self::$instance = new static();
+        }
+        return self::$instance;
+    }
+
+    private function __construct(array $config = [])
+    {
+        parent::__construct($config);
+    }
+
+    //get all params
+    public function getParams($as_array = true)
     {
         $list = Config::find();
-
-        if($only_enabled === true){
-            $list->where(['id' => 1]);
-        }
 
         if($as_array === true){
             $list->asArray();
@@ -35,10 +44,10 @@ class ConfigManager extends Component implements IConfigManagerInterface
         $param = Config::findOne(['param_name' => $this->cStr($name)]);
 
         if(!empty($param->id)){
-            return $this->transformToType($param->param_value, $param->param_type);
+            $param->param_value = $this->transformToType($param->param_value, $param->param_type);
         }
 
-        return false;
+        return $param;
     }
 
     //set param into DB
@@ -78,7 +87,7 @@ class ConfigManager extends Component implements IConfigManagerInterface
     }
 
 
-    //преобразовует значение в нужный тип
+    //transform value
     public function transformToType($value, $type)
     {
         switch($type){

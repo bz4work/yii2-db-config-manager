@@ -1,5 +1,5 @@
 <?php
-namespace bz4work\Models;
+namespace bz4work\models;
 
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
