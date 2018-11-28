@@ -2,7 +2,8 @@ Yii2 DB Config Manager
 ======================
 Yii2 DB Config Manager.
 
-###Requirements:
+Requirements:
+------------
 1. yiisoft/yii2-redis
 2. php 7.2.0
 
