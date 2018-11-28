@@ -19,8 +19,8 @@ class m181127_130013_create_params_tbl extends Migration
             'param_value' => "VARCHAR(200) NULL COMMENT 'значение параметра'",
             'author' => $this->integer()->null()->defaultValue('0')->comment('id юзера который создал запись'),
             'updated_by' => $this->integer()->null()->defaultValue('0')->comment('id юзера который обновил запись'),
-            'created_at' => $this->dateTime()->null()->comment('создана запись'),
-            'updated_at' => $this->dateTime()->null()->comment('обновлена запись'),
+            'created_at' => $this->integer()->null()->comment('создана запись'),
+            'updated_at' => $this->integer()->null()->comment('обновлена запись'),
         ]);
 
     }
