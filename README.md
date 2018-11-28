@@ -31,7 +31,7 @@ Add to your root composer.json, in the 'repositories' section:
     
 Configure the module in config.php
 
-    'conf-man' => [
+    'config-manager' => [
         'class' => 'bz4work\Module'
     ],
 
@@ -40,7 +40,7 @@ Add index route to config.php:
     'rules' => [
         //other rules...
         
-        '/conf-man' => 'conf-man/default/index'
+        '/config-manager' => 'config-manager/default/index'
      ]
     
 Run migrations:
@@ -55,9 +55,9 @@ Once the extension is installed, simply use it in your code by:
 1. CRUD Config Manager:
 
 
-    http://yourdomain.com/conf-man
+    http://yourdomain.com/config-manager
     or
-    http://yourdomain.com/conf-man/default/index
+    http://yourdomain.com/config-manager/default/index
 
 2. Get Param: 
 ```php
