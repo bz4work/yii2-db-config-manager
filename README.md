@@ -10,14 +10,12 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist bz4work/yii2-db-config-manager "*"
 php composer.phar require --prefer-dist bz4work/yii2-db-config-manager:dev-master
 ```
 
 or add
 
 ```
-"bz4work/yii2-db-config-manager": "*"
 "bz4work/yii2-db-config-manager": "@dev"
 ```
 
@@ -75,7 +73,7 @@ $configManager = \bz4work\ConfigManager::getInstance();
 $configManager->set('param_name', 'some_text_or_value', 'INT');
 ```
 
-4. Get all paramets:
+4. Get all parameters:
 ```php
 $configManager = \bz4work\ConfigManager::getInstance();
 

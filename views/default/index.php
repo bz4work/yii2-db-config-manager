@@ -53,7 +53,7 @@ MainAsset::register($this);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', false, [
                             'class' => 'pjax-update-link',
                             'cursor' => 'pointer',
-                            'update-url' => '/conf-dev/default/get-data-pjax?id='.$model->id,
+                            'update-url' => '/default/get-data-pjax?id='.$model->id,
                             'title' => Yii::t('yii', 'Update'),
                         ]);
                     },
@@ -61,7 +61,7 @@ MainAsset::register($this);
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', false, [
                             'class' => 'pjax-delete-link',
                             //'delete-url' => $url,
-                            'delete-url' => '/conf-dev/default/delete-pjax?id='.$model->id,
+                            'delete-url' => '/default/delete-pjax?id='.$model->id,
                             //'data-method' => 'post',
                             'pjax-container' => 'my_pjax',
                             'title' => Yii::t('yii', 'Delete')
